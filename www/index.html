@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>空氣污染</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+<body id="app" style="background: red">
+
+<canvas id="bubble"></canvas>
+
+<!-- modal -->
+<div id="modal" class="air__modal" v-show="modalOpened" style="display: none">
+  <h2>空氣品質怎麼看？</h2>
+  <div class="air__modal__clock clock">
+    <div class="clock__block">
+      <div class="clock__block__lv1"></div>
+      <div class="clock__block__lv2"></div>
+      <div class="clock__block__lv3"></div>
+      <div class="clock__block__lv4"></div>
+    </div>
+    <div class="clock__arrow">
+      <span></span>
+    </div>
+  </div>
+  <p class="air__modal__title">PM2.5 濃度指標為<strong>11</strong>(μg/m3)</p>
+  <div class="air__modal__info">
+    <section>
+      <label for="">
+        <i class="lv1-color"></i>
+        0 - 35
+      </label>
+      <p>可正常戶外活動。</p>
+    </section>
+    <section>
+      <label for="">
+        <i class="lv2-color"></i>
+        36 - 53
+      </label>
+      <p>有心臟、呼吸道及心血管疾病的成人與孩童應減少戶外活動。</p>
+    </section>
+    <section>
+      <label for="">
+        <i class="lv3-color"></i>
+        54 - 70
+      </label>
+      <p>老年人應減少體力消耗、氣喘患者需增加使用吸入劑的頻率。</p>
+    </section>
+    <section>
+      <label for="">
+        <i class="lv4-color"></i>
+        70 以上
+      </label>
+      <p>盡量避免戶外活動。</p>
+    </section>
+  </div>
+</div>
+
+<div class="container air" v-show="selectedSiteName">
+  <h1 class="air__welcome">嗨，今天空氣如何？</h1>
+  <div class="air__frog">
+    <div class="air__frog__talk">
+      <p>今天空氣不錯，適合出遊，別宅在家了！</p>
+      <a id="modal-control" class="air__frog__talk__info" href="#" @click.prevent="openModal">i</a>
+    </div>
+    <div class="air__frog__main">
+      <svg></svg>
+    </div>
+    <h1 class="air__forg__title">良好</h1>
+  </div>
+  <div class="air__locate">
+    <a href="" class="air__locate__button">
+      <span class="pin"></span>
+    </a>
+    <p class="air__locate__name">
+      {{selectedCountryName}} {{selectedSiteName}}
+    </p>
+  </div>
+  <button class="button return" @click="reset">返回我的位置</button>
+
+</div>
+
+<!-- <div class="container locate" v-cloak v-show="!selectedSiteName">
+  <h2>其他位置</h2>
+  <div class="locate__select">
+    <select v-model="selectedCountryName" v-on:change="onSelectCountry">
+      <option v-for="country in countries" v-bind:value="country.value">{{ country.text }}</option>
+    </select>
+
+    <select v-model="selectedSiteName" v-on:change="onSelectSite">
+      <option v-for="site in sites" v-bind:value="site.value">{{ site.text }}</option>
+    </select>
+  </div>
+
+  <div class="locate__map">
+    <svg class="locate__map__svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="433.729px" height="431.417px" viewBox="0 0 433.729 431.417" enable-background="new 0 0 433.729 431.417" xml:space="preserve">
+      <polygon fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" points="251.302,2.499 277.153,30.207 293.813,80.468 375.885,105.577 385.15,175.491 411.775,175.491 431.824,198.866 411.287,227.485 396.351,259.78 388.884,367.274 405.686,394.491 431.69,394.491 431.824,419.132 400.085,429.888 237.66,410.995 178.447,373.544 70.591,390.292 2.423,370.247 26.693,335.454 48.44,324.272 78.968,273.216 71.935,260.681 89.578,230.922 116.78,217.203 156.041,143.013 142.445,140.219 146.179,108.402 178.447,106.496 155.513,78.472 196.587,39.257 232.059,35.518 "/>
+    </svg>
+    <h3 class="locate__map__name">{{ selectedCountryName }}</h3>
+  </div>
+</div> -->
+
+<!-- <script src="scripts/vue.min.js"></script>
+<script src="scripts/zepto.min.js"></script>
+<script src="scripts/zepto.callbacks.min.js"></script>
+<script src="scripts/zepto.deferred.min.js"></script> -->
+<script src="scripts/main.js"></script>
+<!-- <script src="scripts/bubble.js"></script> -->
+
+</body>
+</html>
