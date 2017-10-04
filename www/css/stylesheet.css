@@ -1,27 +1,3 @@
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
-
-@media (max-width: 767px) {
-  .container {
-    width: 100%;
-  }
-}
-
 html {
   height: 100%;
 }
@@ -30,6 +6,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
+  background: #bfbfbf;
 }
 
 a {
@@ -438,4 +415,28 @@ button {
   }
 }
 
-/*# sourceMappingURL=main.css.map */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=stylesheet.css.map */

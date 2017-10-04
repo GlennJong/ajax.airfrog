@@ -1,5 +1,3 @@
-@import "_mobile.scss";
-
 $lv1: #61B351, #77CC66;
 $lv2: #D9C141, #DEC862;
 $lv3: #CC6666, #E68F8F;
@@ -11,6 +9,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
+  background: hsl(0, 0%, 75%);
 }
 // Remove defalt style
 a {
