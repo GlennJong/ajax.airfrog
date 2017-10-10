@@ -7,6 +7,7 @@ body {
   width: 100%;
   height: 100%;
   background: #bfbfbf;
+  transition: all .3s ease;
 }
 
 a {
@@ -158,15 +159,15 @@ button {
   color: #595959;
 }
 
-.air__modal .air__modal__title {
+.air__modal__title {
   color: #595959;
 }
 
-.air__modal .air__modal__title strong {
+.air__modal__title strong {
   font-size: 36px;
 }
 
-.air__modal .air__modal__info section {
+.air__modal__info section {
   margin: 12px 0px;
   width: 400px;
   text-align: left;
@@ -174,33 +175,33 @@ button {
   overflow: hidden;
 }
 
-.air__modal .air__modal__info section label {
+.air__modal__info section label {
   font-size: 18px;
 }
 
-.air__modal .air__modal__info section label i {
+.air__modal__info section label i {
   display: inline-block;
   width: 18px;
   height: 18px;
 }
 
-.air__modal .air__modal__info section label i.lv1-color {
+.air__modal__info section label i.lv1-color {
   background-image: linear-gradient(#61B351, #77CC66);
 }
 
-.air__modal .air__modal__info section label i.lv2-color {
+.air__modal__info section label i.lv2-color {
   background-image: linear-gradient(#D9C141, #DEC862);
 }
 
-.air__modal .air__modal__info section label i.lv3-color {
+.air__modal__info section label i.lv3-color {
   background-image: linear-gradient(#CC6666, #E68F8F);
 }
 
-.air__modal .air__modal__info section label i.lv4-color {
+.air__modal__info section label i.lv4-color {
   background-color: #9966CC;
 }
 
-.air__modal .air__modal__info section p {
+.air__modal__info section p {
   float: right;
   margin: 0;
   margin-left: 12px;
@@ -209,7 +210,7 @@ button {
   font-size: 18px;
 }
 
-.air__modal .clock {
+.clock {
   position: relative;
   margin: 12px auto;
   border: 20px solid #FFF;
@@ -221,7 +222,7 @@ button {
   overflow: hidden;
 }
 
-.air__modal .clock .clock__block::after {
+.clock__block::after {
   content: "";
   position: absolute;
   left: 0;
@@ -233,47 +234,48 @@ button {
   z-index: 1;
 }
 
-.air__modal .clock .clock__block > div {
+.clock__block > div {
   position: absolute;
   width: 80px;
   height: 80px;
 }
 
-.air__modal .clock .clock__block .clock__block__lv1 {
+.clock__block .is-lv1 {
   top: 0;
   right: 0;
   background-image: linear-gradient(-45deg, #61B351, #77CC66);
 }
 
-.air__modal .clock .clock__block .clock__block__lv2 {
+.clock__block .is-lv2 {
   bottom: 0;
   right: 0;
   background-image: linear-gradient(45deg, #D9C141, #DEC862);
 }
 
-.air__modal .clock .clock__block .clock__block__lv3 {
+.clock__block .is-lv3 {
   bottom: 0;
   left: 0;
   background-image: linear-gradient(135deg, #CC6666, #E68F8F);
 }
 
-.air__modal .clock .clock__block .clock__block__lv4 {
+.clock__block .is-lv4 {
   top: 0;
   left: 0;
   background-color: #9966CC;
 }
 
-.air__modal .clock .clock__arrow {
+.clock__arrow {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  -webkit-animation: test 5s linear 0s infinite;
-          animation: test 5s linear 0s infinite;
+  transition: -webkit-transform .3s ease;
+  transition: transform .3s ease;
+  transition: transform .3s ease, -webkit-transform .3s ease;
 }
 
-.air__modal .clock .clock__arrow span {
+.clock__arrow span {
   display: block;
   position: absolute;
   top: 20px;
@@ -286,7 +288,7 @@ button {
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.5);
 }
 
-.air__modal .clock .clock__arrow::after {
+.clock__arrow::after {
   content: "";
   position: absolute;
   top: 50%;

@@ -1,11 +1,11 @@
-function Dust() {
+function Dust(qty) {
   // Option
   this.General = {
     canvas: document.getElementById('dust'),
-    qty: 50,
+    qty: qty,
     obj: [],
     speed: 1,
-    color: 'hsl(0, 0%, 0%)',
+    color: 'hsla(0, 0%, 100%, .25)',
     background   : 'hsl(0, 0%, 0%)',
     windowWidth  : window.innerWidth,
     windowHeight : window.innerHeight
@@ -77,4 +77,3 @@ function Dust() {
 
   this.init()
 }
-window.init = Dust()

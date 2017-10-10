@@ -5,27 +5,27 @@
   <title>空氣污染</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link rel="stylesheet" href="css/stylesheet.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body id="app">
 
 <canvas id="dust"></canvas>
 
 <!-- modal -->
-<div id="modal" class="air__modal" v-show="modalOpened" style="display: none">
+<div id="modal" class="air__modal">
   <h2>空氣品質怎麼看？</h2>
   <div class="air__modal__clock clock">
     <div class="clock__block">
-      <div class="clock__block__lv1"></div>
-      <div class="clock__block__lv2"></div>
-      <div class="clock__block__lv3"></div>
-      <div class="clock__block__lv4"></div>
+      <div class="is-lv1"></div>
+      <div class="is-lv2"></div>
+      <div class="is-lv3"></div>
+      <div class="is-lv4"></div>
     </div>
-    <div class="clock__arrow">
+    <div id="cursor" class="clock__arrow">
       <span></span>
     </div>
   </div>
-  <p class="air__modal__title">PM2.5 濃度指標為<strong>11</strong>(μg/m3)</p>
+  <p class="air__modal__title">AQI<strong id="AQI"></strong></p>
   <div class="air__modal__info">
     <section>
       <label for="">
@@ -68,14 +68,15 @@
     <div class="air__frog__main">
       <svg></svg>
     </div>
-    <h1 class="air__forg__title">良好</h1>
+    <h1 id="Status" class="air__forg__title"></h1>
   </div>
   <div class="air__locate">
     <a href="" class="air__locate__button">
       <span class="pin"></span>
     </a>
     <p class="air__locate__name">
-      {{selectedCountryName}} {{selectedSiteName}}
+      <span id="SiteName"></span>
+      <span id="County"></span>
     </p>
   </div>
   <button class="button return" @click="reset">返回我的位置</button>
@@ -102,12 +103,15 @@
   </div>
 </div> -->
 
-<!-- <script src="scripts/vue.min.js"></script>
-<script src="scripts/zepto.min.js"></script>
-<script src="scripts/zepto.callbacks.min.js"></script>
-<script src="scripts/zepto.deferred.min.js"></script> -->
 <script src="scripts/main.js"></script>
 <script src="scripts/dust.js"></script>
+<script src="scripts/pos.js"></script>
+<script src="scripts/data.js"></script>
+<script>
+    // getData(6)
+</script>
+
+
 
 </body>
 </html>
