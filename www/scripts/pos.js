@@ -5,21 +5,23 @@ function Location(lat, lon) {
 }
 Location.prototype.getSite = function() {
   var that = this;
-  $.ajax({
-    url: "scripts/AQXSite.json",
-    type: "GET",
-    dataType: "json",
-    success: function(data) {
-      var siteName = that.compare(data)
+  var data = siteInfo;
+  var siteName = that.compare(data)
+  getData(siteName)
+  // $.ajax({
+  //   url: "scripts/AQXSite.json",
+  //   type: "GET",
+  //   dataType: "json",
+  //   success: function(data) {
+  //     var siteName = that.compare(data)
 
-      // Compare the site WTF!!
-      getData(siteName)
-    },
+  //     getData(siteName)
+  //   },
     
-    error: function() {
-      alert("ERROR!!!");
-    }
-  });
+  //   error: function() {
+  //     alert("ERROR!!!");
+  //   }
+  // });
 }
 
 Location.prototype.compare = function(data) {
