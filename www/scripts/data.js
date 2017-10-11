@@ -1,7 +1,7 @@
 // Get Data
 function getData(siteName) {
   $.ajax({
-    url: "//opendata2.epa.gov.tw/AQI.json",
+    url: "http://opendata2.epa.gov.tw/AQI.json",
     type: "GET",
     dataType: "json",
     success: function(data) {
