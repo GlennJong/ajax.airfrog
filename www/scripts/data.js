@@ -2,7 +2,6 @@
 function getData(siteName) {
   $.ajax({
     // url: "http://opendata2.epa.gov.tw/AQI.json",
-    // url: "https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000260/?format=json&token=H7vuj5zggE2Fw76iGDaEug",
     url: "//opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000260/?format=json&token=H7vuj5zggE2Fw76iGDaEug",
     type: "GET",
     dataType: "json",
