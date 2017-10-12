@@ -159,6 +159,14 @@ button {
   color: #595959;
 }
 
+.air__modal.is-open {
+  display: block;
+}
+
+.air__modal.is-close {
+  display: none;
+}
+
 .air__modal__title {
   color: #595959;
 }

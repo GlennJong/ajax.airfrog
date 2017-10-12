@@ -7,21 +7,9 @@ Location.prototype.getSite = function() {
   var that = this;
   var data = siteInfo;
   var siteName = that.compare(data)
-  getData(siteName)
-  // $.ajax({
-  //   url: "scripts/AQXSite.json",
-  //   type: "GET",
-  //   dataType: "json",
-  //   success: function(data) {
-  //     var siteName = that.compare(data)
 
-  //     getData(siteName)
-  //   },
-    
-  //   error: function() {
-  //     alert("ERROR!!!");
-  //   }
-  // });
+  // To AQI.json
+  getData(siteName)
 }
 
 Location.prototype.compare = function(data) {
@@ -34,16 +22,8 @@ Location.prototype.compare = function(data) {
     var diffLon = Math.abs(Number(allSite[i].TWD97Lon)) -
                   Math.abs(Number(this.myLon));
                   
-    var count = Math.abs(diffLat) + Math.abs(diffLon)
-
-    // var siteCount = Math.abs(Number(allSite[i].TWD97Lat)) +
-    //                 Math.abs(Number(allSite[i].TWD97Lon));
-    // var myCount   = Math.abs(Number(this.myLat)) + 
-    //                 Math.abs(Number(this.myLon));
-    // var count = Math.abs(siteCount - myCount);
-
-    arr.push(count)
-    console.log(count + ',' + allSite[i].SiteName)
+    var count = Math.abs(diffLat) + Math.abs(diffLon);
+    arr.push(count);
   }
 
   // Get min

@@ -12,7 +12,7 @@
 <canvas id="dust"></canvas>
 
 <!-- modal -->
-<div id="modal" class="air__modal">
+<div id="airboxModal" class="air__modal">
   <h2>空氣品質怎麼看？</h2>
   <div class="air__modal__clock clock">
     <div class="clock__block">
@@ -25,7 +25,7 @@
       <span></span>
     </div>
   </div>
-  <p class="air__modal__title">AQI<strong id="AQI"></strong></p>
+  <p class="air__modal__title">PM2.5<strong id="PM2.5"></strong></p>
   <div class="air__modal__info">
     <section>
       <label for="">
@@ -56,6 +56,7 @@
       <p>盡量避免戶外活動。</p>
     </section>
   </div>
+  <button id="airboxClose">X</button>
 </div>
 
 <div class="container air" v-show="selectedSiteName">
@@ -63,7 +64,7 @@
   <div class="air__frog">
     <div class="air__frog__talk">
       <p>今天空氣不錯，適合出遊，別宅在家了！</p>
-      <a id="modal-control" class="air__frog__talk__info" href="#" @click.prevent="openModal">i</a>
+      <a id="airboxOpen" class="air__frog__talk__info" href="#">i</a>
     </div>
     <div class="air__frog__main">
       <svg></svg>

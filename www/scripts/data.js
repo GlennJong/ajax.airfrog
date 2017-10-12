@@ -1,7 +1,4 @@
 // Get Data
-
-var x = 'https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000259/?format=json&token=H7vuj5zggE2Fw76iGDaEug'
-console.log(x)
 function getData(siteName) {
   $.ajax({
     url: "http://opendata2.epa.gov.tw/AQI.json",
@@ -27,11 +24,11 @@ function Data(data, siteName) {
   this.print([
               'SiteName', 
               'County',
-              'AQI',
+              'PM2.5',
               'Status'
               ]);
 
-  this.style('AQI');
+  this.style('PM2.5');
 
   window.init = Dust(that.AQI)
 }
@@ -40,8 +37,6 @@ Data.prototype.findSite = function() {
   for (var i = 0, j = this.data.length; i < j; i++) {
     if (this.mySite == this.data[i].SiteName) {
       return i
-
-      console.log(i)
     }
   }
 }
@@ -78,7 +73,9 @@ Data.prototype.style = function(prop) {
   var scale = [easy, normal, warning, danger];
   for (var i = 0, j = scale.length; i < j; i++) {
     if (index > scale[i].value) {
-      $body.setAttribute('class', scale[i].class)
+      // $body.setAttribute('class', scale[i].class)
+      $body.className = scale[i].class;
+      console.log(scale[i].class)
     }
   };
 
@@ -86,5 +83,4 @@ Data.prototype.style = function(prop) {
   var deg    = index * 360/200,
       rotate = 'transform: rotate(' + deg + 'deg)';
   $cursor.setAttribute('style', rotate);
-
 };

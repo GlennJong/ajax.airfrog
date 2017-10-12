@@ -128,6 +128,12 @@ button {
   h2 {
     color: hsla(0,0%,35%,1);
   }
+  &.is-open {
+    display: block;
+  }
+  &.is-close {
+    display: none;
+  }
 }
 .air__modal__clock {}
 .air__modal__title {
