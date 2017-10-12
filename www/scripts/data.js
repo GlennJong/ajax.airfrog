@@ -1,8 +1,11 @@
 // Get Data
+
+var x = 'https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000259/?format=json&token=H7vuj5zggE2Fw76iGDaEug'
+console.log(x)
 function getData(siteName) {
   $.ajax({
     url: "http://opendata2.epa.gov.tw/AQI.json",
-    // url: "//opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000260/?format=json&token=H7vuj5zggE2Fw76iGDaEug",
+    // url: "https://opendata.epa.gov.tw/webapi/api/rest/datastore/355000000I-000259/?format=json&token=H7vuj5zggE2Fw76iGDaEug",
     type: "GET",
     dataType: "json",
     success: function(data) {
@@ -55,21 +58,33 @@ Data.prototype.style = function(prop) {
       $body   = document.body,
       $cursor = document.getElementById('cursor');
 
+  // Style
+  var easy = {
+        class: 'lv-1',
+        value: 0,
+      },
+      normal = {
+        class: 'lv-2',
+        value: 35,
+      },
+      warning = {
+        class: 'lv-3',
+        value: 53,
+      },
+      danger = {
+        class: 'lv-4',
+        value: 70
+      };
+  var scale = [easy, normal, warning, danger];
+  for (var i = 0, j = scale.length; i < j; i++) {
+    if (index > scale[i].value) {
+      $body.setAttribute('class', scale[i].class)
+    }
+  };
+
+  // Clock
   var deg    = index * 360/200,
       rotate = 'transform: rotate(' + deg + 'deg)';
-
   $cursor.setAttribute('style', rotate);
 
-  if (index < 50) {
-    $body.setAttribute('class', 'lv-1');
-  }
-  else if (index < 100) {
-    $body.setAttribute('class', 'lv-2');
-  }
-  else if (index < 150) {
-    $body.setAttribute('class', 'lv-3');
-  }
-  else if (index > 151) {
-    $body.setAttribute('class', 'lv-4');
-  }
-}
+};
