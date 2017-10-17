@@ -4,7 +4,7 @@ function Dust(qty) {
     canvas: document.getElementById('dust'),
     qty: qty,
     obj: [],
-    speed: 1,
+    speed: 0.1,
     color: 'hsla(0, 0%, 100%, .25)',
     background   : 'hsl(0, 0%, 0%)',
     windowWidth  : window.innerWidth,

@@ -7,6 +7,7 @@ body {
   width: 100%;
   height: 100%;
   background: #bfbfbf;
+  font-size: 16px;
   transition: all .3s ease;
 }
 
@@ -76,6 +77,82 @@ button {
   background: #FFF;
 }
 
+.bubble {
+  position: relative;
+  text-align: center;
+}
+
+.bubble:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-top: -2px;
+  margin-left: -5px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #FFF;
+}
+
+.bubble p {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.bubble p:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  z-index: -1;
+  -webkit-transform: translate(-50%, -100%);
+          transform: translate(-50%, -100%);
+}
+
+.bubble.active:after {
+  visibility: hidden;
+  border-top: 0px solid #FFF;
+}
+
+.bubble.active p {
+  visibility: hidden;
+  color: transparent;
+}
+
+.bubble.active p:after {
+  visibility: hidden;
+  width: 4px;
+  height: 4px;
+  border-radius: 20px;
+}
+
+.bubble p {
+  transition: color .3s ease .3s;
+}
+
+.bubble p:after {
+  transition: all .3s ease;
+}
+
+.bubble.active:after {
+  transition: all .3s ease .15s;
+}
+
+.bubble.active p {
+  transition: all .15s ease;
+}
+
+.bubble.active p:after {
+  transition: all .3s ease .15s;
+}
+
 .locate {
   color: #FFF;
 }
@@ -143,11 +220,36 @@ button {
   }
 }
 
-.air__modal {
+.modal {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  -webkit-transform: scale(0.25, 0.25);
+          transform: scale(0.25, 0.25);
+  transition: -webkit-transform 0.3s cubic-bezier(0.87, 0, 0.11, 1.44);
+  transition: transform 0.3s cubic-bezier(0.87, 0, 0.11, 1.44);
+  transition: transform 0.3s cubic-bezier(0.87, 0, 0.11, 1.44), -webkit-transform 0.3s cubic-bezier(0.87, 0, 0.11, 1.44);
+}
+
+.modal.is-open {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+
+.modal.is-close {
+  visibility: hidden;
+}
+
+.modal__content {
   position: absolute;
   top: 50%;
   left: 50%;
-  padding: 70px;
+  padding: 36px 60px;
   background: #FFF;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
   -webkit-transform: translate(-50%, -50%);
@@ -155,27 +257,55 @@ button {
   z-index: 500;
 }
 
-.air__modal h2 {
+.modal__content h2 {
   color: #595959;
+  text-align: center;
 }
 
-.air__modal.is-open {
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+}
+
+.modal__close:before, .modal__close:after {
+  content: "";
   display: block;
+  position: absolute;
+  top: 15px;
+  left: 0;
+  border-radius: 3px;
+  width: 36px;
+  height: 6px;
+  background: #999999;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
-.air__modal.is-close {
-  display: none;
+.modal__close:after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 
-.air__modal__title {
+.modal__close:hover:before, .modal__close:hover:after {
+  background: #595959;
+}
+
+.airbox__content {
+  background: #FFF;
+}
+
+.airbox__title {
   color: #595959;
 }
 
-.air__modal__title strong {
+.airbox__title strong {
   font-size: 36px;
 }
 
-.air__modal__info section {
+.airbox__info section {
   margin: 12px 0px;
   width: 400px;
   text-align: left;
@@ -183,39 +313,44 @@ button {
   overflow: hidden;
 }
 
-.air__modal__info section label {
-  font-size: 18px;
+.airbox__info section label {
+  font-size: 15px;
 }
 
-.air__modal__info section label i {
+.airbox__info section label i {
   display: inline-block;
+  vertical-align: middle;
   width: 18px;
   height: 18px;
 }
 
-.air__modal__info section label i.lv1-color {
+.airbox__info section label i.lv1-color {
   background-image: linear-gradient(#61B351, #77CC66);
 }
 
-.air__modal__info section label i.lv2-color {
+.airbox__info section label i.lv2-color {
   background-image: linear-gradient(#D9C141, #DEC862);
 }
 
-.air__modal__info section label i.lv3-color {
+.airbox__info section label i.lv3-color {
   background-image: linear-gradient(#CC6666, #E68F8F);
 }
 
-.air__modal__info section label i.lv4-color {
+.airbox__info section label i.lv4-color {
   background-color: #9966CC;
 }
 
-.air__modal__info section p {
+.airbox__info section label span {
+  vertical-align: middle;
+}
+
+.airbox__info section p {
   float: right;
   margin: 0;
   margin-left: 12px;
   width: 300px;
   line-height: 24px;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .clock {
@@ -278,6 +413,8 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
   transition: -webkit-transform .3s ease;
   transition: transform .3s ease;
   transition: transform .3s ease, -webkit-transform .3s ease;
@@ -311,58 +448,47 @@ button {
   z-index: 1;
 }
 
-.air h1 {
+.welcome {
   font-size: 36px;
   color: #FFF;
 }
 
-.air .air__frog .air__frog__talk {
+.frog__talk {
   position: relative;
   border-radius: 12px;
   margin: 0 auto;
-  padding: 8px 16px;
   width: 240px;
-  background: #FFF;
   font-size: 16px;
   color: #595959;
 }
 
-.air .air__frog .air__frog__talk p {
+.frog__talk p {
+  padding: 8px 16px;
   line-height: 1.5em;
   text-align: left;
 }
 
-.air .air__frog .air__frog__talk a.air__frog__talk__info {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  border: 2px solid #595959;
-  border-radius: 50%;
-  padding: 3px;
-  width: 14px;
-  height: 14px;
-  font-weight: bold;
+.frog__locate {
+  color: #FFF;
+  font-size: 18px;
 }
 
-.air .air__frog .air__frog__talk::after {
-  content: "";
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  margin-left: -5px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 20px solid #FFF;
+.frog__locate strong {
+  font-weight: normal;
 }
 
-.air .air__locate a.air__locate__button {
+.frog__title {
+  color: #FFF;
+}
+
+.air__locate a.air__locate__button {
   display: block;
   position: relative;
   margin: 0 auto;
   width: 60px;
 }
 
-.air .air__locate a.air__locate__button span {
+.air__locate a.air__locate__button span {
   display: block;
   position: relative;
   border: 20px solid #FFF;
@@ -374,7 +500,7 @@ button {
           animation: floating 2s ease-in-out 0s infinite alternate;
 }
 
-.air .air__locate a.air__locate__button span::before {
+.air__locate a.air__locate__button span::before {
   content: '';
   position: absolute;
   bottom: -36px;
@@ -384,7 +510,7 @@ button {
   border-top: 20px solid #FFF;
 }
 
-.air .air__locate a.air__locate__button::after {
+.air__locate a.air__locate__button::after {
   content: "";
   position: absolute;
   bottom: -24px;
@@ -398,31 +524,18 @@ button {
           animation: wave 1s ease-out 0s infinite;
 }
 
-.air .air__locate p.air__locate__name {
-  margin-top: 36px;
-  color: #FFF;
+.svg {
+  width: 250px;
+  height: 210px;
 }
 
-@-webkit-keyframes test {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-@keyframes test {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
+.svg path, .svg circle, .svg line {
+  stroke: #FFF;
+  stroke-width: 5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
 }
 
 @media (min-width: 768px) {

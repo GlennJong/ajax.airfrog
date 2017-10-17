@@ -30,6 +30,7 @@ function Data(data, siteName) {
 
   this.style('PM2.5');
 
+  // Dust
   window.init = Dust(that.AQI)
 }
 
@@ -72,10 +73,10 @@ Data.prototype.style = function(prop) {
       };
   var scale = [easy, normal, warning, danger];
   for (var i = 0, j = scale.length; i < j; i++) {
-    if (index > scale[i].value) {
-      // $body.setAttribute('class', scale[i].class)
+    if (index > scale[i].value && index != "") {
       $body.className = scale[i].class;
-      console.log(scale[i].class)
+    } else if (index == "") {
+      console.log('null')
     }
   };
 

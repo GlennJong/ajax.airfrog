@@ -9,8 +9,6 @@ function ModalBox(group) {
 
   var originClass = $modal.getAttribute('class');
 
-  console.log(originClass)
-
   $open.onclick = function() {
     $modal.className = originClass + ' is-open';
   }
@@ -19,12 +17,12 @@ function ModalBox(group) {
     $modal.className = originClass + ' is-close';
   }
 
-  $(window).on('click', function(e) {
+  window.onclick = function(e) {
     if(e.target == $modal) {
       $modal.className = originClass + ' is-close';
     }
-  })
+  }
 
 }
 
-new ModalBox('airbox')
+new ModalBox('airbox');
