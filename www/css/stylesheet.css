@@ -15,6 +15,10 @@ a {
   text-decoration: none;
 }
 
+button:focus {
+  outline: none;
+}
+
 .lv-1 {
   background-image: linear-gradient(#61B351, #77CC66);
 }
@@ -84,14 +88,13 @@ button {
 
 .bubble:after {
   content: "";
+  visibility: hidden;
   position: absolute;
   top: 100%;
   left: 50%;
   margin-top: -2px;
   margin-left: -5px;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 10px solid #FFF;
+  border-top: 0px solid #FFF;
 }
 
 .bubble p {
@@ -100,6 +103,7 @@ button {
   margin: 0;
   padding: 0;
   text-align: left;
+  color: transparent;
 }
 
 .bubble p:after {
@@ -107,50 +111,53 @@ button {
   position: absolute;
   left: 50%;
   top: 100%;
-  border-radius: 12px;
-  width: 100%;
-  height: 100%;
+  visibility: hidden;
+  width: 4px;
+  height: 4px;
+  border-radius: 20px;
   background: #FFF;
   z-index: -1;
   -webkit-transform: translate(-50%, -100%);
           transform: translate(-50%, -100%);
 }
 
-.bubble.active:after {
-  visibility: hidden;
-  border-top: 0px solid #FFF;
+.bubble.is-active:after {
+  visibility: visible;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #FFF;
 }
 
-.bubble.active p {
-  visibility: hidden;
-  color: transparent;
+.bubble.is-active p {
+  visibility: visible;
+  color: #595959;
 }
 
-.bubble.active p:after {
-  visibility: hidden;
-  width: 4px;
-  height: 4px;
-  border-radius: 20px;
+.bubble.is-active p:after {
+  visibility: visible;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
 }
 
 .bubble p {
-  transition: color .3s ease .3s;
-}
-
-.bubble p:after {
-  transition: all .3s ease;
-}
-
-.bubble.active:after {
-  transition: all .3s ease .15s;
-}
-
-.bubble.active p {
   transition: all .15s ease;
 }
 
-.bubble.active p:after {
+.bubble p:after {
   transition: all .3s ease .15s;
+}
+
+.bubble.is-active:after {
+  transition: all .3s ease .15s;
+}
+
+.bubble.is-active p {
+  transition: color .3s ease .3s;
+}
+
+.bubble.is-active p:after {
+  transition: all .3s ease;
 }
 
 .locate {
@@ -173,24 +180,24 @@ button {
 }
 
 @-webkit-keyframes floating {
-  form {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-  to {
+  from {
     -webkit-transform: translate(0, 6px);
             transform: translate(0, 6px);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
   }
 }
 
 @keyframes floating {
-  form {
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-  to {
+  from {
     -webkit-transform: translate(0, 6px);
             transform: translate(0, 6px);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
   }
 }
 
@@ -306,7 +313,7 @@ button {
 }
 
 .airbox__info section {
-  margin: 12px 0px;
+  margin: 8px 0px;
   width: 400px;
   text-align: left;
   color: #595959;
@@ -468,12 +475,16 @@ button {
   text-align: left;
 }
 
-.frog__locate {
+.frog__main {
+  margin-top: -18px;
+}
+
+.frog__state {
   color: #FFF;
   font-size: 18px;
 }
 
-.frog__locate strong {
+.frog__state strong {
   font-weight: normal;
 }
 
@@ -481,14 +492,15 @@ button {
   color: #FFF;
 }
 
-.air__locate a.air__locate__button {
+.locate__controller {
   display: block;
   position: relative;
   margin: 0 auto;
+  padding: 0;
   width: 60px;
 }
 
-.air__locate a.air__locate__button span {
+.locate__controller span {
   display: block;
   position: relative;
   border: 20px solid #FFF;
@@ -496,11 +508,11 @@ button {
   width: 60px;
   height: 60px;
   box-sizing: border-box;
-  -webkit-animation: floating 2s ease-in-out 0s infinite alternate;
-          animation: floating 2s ease-in-out 0s infinite alternate;
+  -webkit-animation: floating 1s ease-in-out .22s infinite alternate;
+          animation: floating 1s ease-in-out .22s infinite alternate;
 }
 
-.air__locate a.air__locate__button span::before {
+.locate__controller span::before {
   content: '';
   position: absolute;
   bottom: -36px;
@@ -510,7 +522,7 @@ button {
   border-top: 20px solid #FFF;
 }
 
-.air__locate a.air__locate__button::after {
+.locate__controller::after {
   content: "";
   position: absolute;
   bottom: -24px;
@@ -520,8 +532,8 @@ button {
   margin-left: -6px;
   width: 10px;
   height: 4px;
-  -webkit-animation: wave 1s ease-out 0s infinite;
-          animation: wave 1s ease-out 0s infinite;
+  -webkit-animation: wave 2s ease-out 0s infinite;
+          animation: wave 2s ease-out 0s infinite;
 }
 
 .svg {

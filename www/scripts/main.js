@@ -26,3 +26,4 @@ function ModalBox(group) {
 }
 
 new ModalBox('airbox');
+new ModalBox('locate');

@@ -15,7 +15,7 @@
 <div id="airboxModal" class="modal airbox">
   <div class="modal__content airbox__content">
     <h2>空氣品質怎麼看？</h2>
-    <button id="airboxClose" class="modal__close">X</button>
+    <button id="airboxClose" class="modal__close"></button>
     <div class="airbox__clock clock">
       <div class="clock__block">
         <div class="is-lv1"></div>
@@ -27,7 +27,7 @@
         <span></span>
       </div>
     </div>
-    <p class="airbox__title">PM2.5<strong id="PM2.5"></strong></p>
+    <p class="airbox__title"><span>PM2.5指數 </span><strong id="PM2.5">?</strong><span> μg/m3</span></p>
     <div class="airbox__info">
       <section>
         <label for="">
@@ -61,13 +61,23 @@
   </div>
 </div>
 
+<!-- modal -->
+<div id="locateModal" class="modal locatebox">
+  <div class="modal__content locatebox__content">
+    <h2>選擇其他地區</h2>
+    <button id="locateClose" class="modal__close"></button>
+    div.locata
+    </div>
+  </div>
+</div>
+
 <div class="container" v-show="selectedSiteName">
   <h1 class="welcome">嗨，今天空氣如何？</h1>
   <div class="frog">
     <div id="bubble" class="frog__talk bubble">
-      <p>今天空氣不錯，適合出遊，別宅在家了！</p>
+      <p id="sayContent">今天空氣不錯，適合出遊，別宅在家了！</p>
     </div>
-    <button id="airboxOpen" class="air__frog__main">
+    <button id="airboxOpen" class="frog__main">
       <svg class="svg svg-frog">
         <g id="frog-ani">
           <path id="p2" d="M186.959,121.137c-0.449-5.106-0.593-6.891-1.158-11.727
@@ -140,49 +150,25 @@
         </g>
       </svg>
     </button>
-    <p class="frog__locate">
-      <span><strong id="SiteName"></strong>站</span>
+    <p class="frog__state">
+      <span><strong id="SiteName">尋找最近的</strong>站</span>
       <span id="County"></span>
     </p>
-    <h1 id="Status" class="frog__title"></h1>
+    <h1 id="Status" class="frog__title">偵測中</h1>
   </div>
-  <div class="air__locate">
-    <a href="" class="air__locate__button">
+  <div class="air__locate locate">
+    <button id="locateOpen" class="locate__controller">
       <span class="pin"></span>
-    </a>
+    </button>
   </div>
   <!-- <button class="button return">返回我的位置</button> -->
-
 </div>
-
-<!-- <div class="container locate" v-cloak v-show="!selectedSiteName">
-  <h2>其他位置</h2>
-  <div class="locate__select">
-    <select v-model="selectedCountryName" v-on:change="onSelectCountry">
-      <option v-for="country in countries" v-bind:value="country.value">{{ country.text }}</option>
-    </select>
-
-    <select v-model="selectedSiteName" v-on:change="onSelectSite">
-      <option v-for="site in sites" v-bind:value="site.value">{{ site.text }}</option>
-    </select>
-  </div>
-
-  <div class="locate__map">
-    <svg class="locate__map__svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="433.729px" height="431.417px" viewBox="0 0 433.729 431.417" enable-background="new 0 0 433.729 431.417" xml:space="preserve">
-      <polygon fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" points="251.302,2.499 277.153,30.207 293.813,80.468 375.885,105.577 385.15,175.491 411.775,175.491 431.824,198.866 411.287,227.485 396.351,259.78 388.884,367.274 405.686,394.491 431.69,394.491 431.824,419.132 400.085,429.888 237.66,410.995 178.447,373.544 70.591,390.292 2.423,370.247 26.693,335.454 48.44,324.272 78.968,273.216 71.935,260.681 89.578,230.922 116.78,217.203 156.041,143.013 142.445,140.219 146.179,108.402 178.447,106.496 155.513,78.472 196.587,39.257 232.059,35.518 "/>
-    </svg>
-    <h3 class="locate__map__name">{{ selectedCountryName }}</h3>
-  </div>
-</div> -->
 
 <script src="scripts/main.js"></script>
 <script src="scripts/dust.js"></script>
 <script src="scripts/site-info.js"></script>
 <script src="scripts/pos.js"></script>
 <script src="scripts/data.js"></script>
-<script>
-    // getData(6)
-</script>
 
 
 

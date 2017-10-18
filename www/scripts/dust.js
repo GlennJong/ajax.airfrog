@@ -4,7 +4,7 @@ function Dust(qty) {
     canvas: document.getElementById('dust'),
     qty: qty,
     obj: [],
-    speed: 0.1,
+    speed: .5,
     color: 'hsla(0, 0%, 100%, .25)',
     background   : 'hsl(0, 0%, 0%)',
     windowWidth  : window.innerWidth,
@@ -31,13 +31,13 @@ function Dust(qty) {
     // Dot Attribute
     this.x = General.windowWidth  * Math.random();
     this.y = General.windowHeight * Math.random();
-    this.size   = Math.floor(Math.random() * 3);
+    this.size   = Math.floor(Math.random() * 4);
 
     // Move
     this.movex  = Math.random() < 0.5 ? -1 : 1;
     this.movey  = Math.random() < 0.5 ? -1 : 1;
-    this.speedx = Math.floor(Math.random() * 10) / 10;
-    this.speedy = Math.floor(Math.random() * 10) / 10;
+    this.speedx = Math.floor(Math.random() * 10) / 10 * General.speed;
+    this.speedy = Math.floor(Math.random() * 10) / 10 * General.speed;
 
     // Draw
     this.draw = function() {

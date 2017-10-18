@@ -52,31 +52,38 @@ Data.prototype.style = function(prop) {
   var index   = that[prop],
   // var index   = 166,
       $body   = document.body,
-      $cursor = document.getElementById('cursor');
+      $cursor = document.getElementById('cursor'),
+      $bubble = document.getElementById('bubble'),
+      $sayContent = document.getElementById('sayContent');
 
   // Style
   var easy = {
         class: 'lv-1',
         value: 0,
+        say:   '還不錯，適合出遊大口呼吸，別宅在家了！'
       },
       normal = {
         class: 'lv-2',
         value: 35,
+        say:   '有點糟呢，出門記得戴口罩！'
       },
       warning = {
         class: 'lv-3',
         value: 53,
+        say:   '很糟糕，為了你可愛的肺，最好別出門！'
       },
       danger = {
         class: 'lv-4',
-        value: 70
+        value: 70,
+        say:   '糟透了，快把門窗緊閉，打開空氣清淨機！'
       };
   var scale = [easy, normal, warning, danger];
   for (var i = 0, j = scale.length; i < j; i++) {
     if (index > scale[i].value && index != "") {
       $body.className = scale[i].class;
+      $sayContent.textContent = scale[i].say;
     } else if (index == "") {
-      console.log('null')
+      return
     }
   };
 
@@ -84,4 +91,8 @@ Data.prototype.style = function(prop) {
   var deg    = index * 360/200,
       rotate = 'transform: rotate(' + deg + 'deg)';
   $cursor.setAttribute('style', rotate);
+
+  // Bubble
+  var originClass = $bubble.getAttribute('class');
+  $bubble.setAttribute('class', originClass + ' is-active')
 };
