@@ -30,6 +30,7 @@ function Data(data, siteName) {
 
   this.style('PM2.5');
   this.selectSetting();
+  this.bindEvents()
 
   // Dust
   window.init = Dust(that.AQI)
@@ -135,9 +136,28 @@ Data.prototype.selectSite = function(arrSiteName) {
     $option.textContent = arrSiteName[i];
     $siteName.appendChild($option);
   }
-
 }
 
+Data.prototype.bindEvents = function() {
+  var $btn = document.getElementById('newSite');
+  var that = this;
+  $btn.onclick = function() {
+    that.mySite = document.getElementById('optionSiteName').value;
+    that.locate = that.findSite();
+    newThat = that.data[that.locate];
+
+    that.print([
+                'SiteName', 
+                'County',
+                'PM2.5',
+                'Status'
+                ]);
+
+    that.style('PM2.5');
+    // Dust
+    window.init = Dust(newThat.AQI)
+  }
+}
 
 
 
