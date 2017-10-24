@@ -14,7 +14,7 @@ function getData(siteName) {
       alert("ERROR!!!");
     }
   });
-}
+};
 
 function Data(data, siteName) {
   this.data = data;
@@ -30,10 +30,11 @@ function Data(data, siteName) {
               ]);
 
   this.style('PM2.5');
+  this.selectSetting();
 
   // Dust
   window.init = Dust(that.AQI)
-}
+};
 
 Data.prototype.findSite = function() {
   for (var i = 0, j = this.data.length; i < j; i++) {
@@ -41,13 +42,13 @@ Data.prototype.findSite = function() {
       return i
     }
   }
-}
+};
 
 Data.prototype.print = function(prop) {
   for(var i = 0, j = prop.length; i < j; i++) {
     document.getElementById(prop[i]).textContent = that[prop[i]];
   }
-}
+};
 
 Data.prototype.style = function(prop) {
   var index   = that[prop],
@@ -97,3 +98,48 @@ Data.prototype.style = function(prop) {
   var originClass = $bubble.getAttribute('class');
   $bubble.setAttribute('class', originClass + ' is-active')
 };
+
+Data.prototype.selectSetting = function() {
+  var that = this;
+  var arrCounty = ['基隆市', '臺北市', '新北市', '桃園市', '新竹縣',
+                '新竹市', '苗栗縣', '臺中市', '彰化市', '南投縣',
+                '雲林縣', '嘉義縣', '臺南市', '高雄市', '屏東縣',
+                '臺東縣', '花蓮縣', '宜蘭縣', '金門縣', '澎湖縣',
+                '連江縣'];
+  var $county = document.getElementById('optionCounty')
+
+  for (var i = 0, j = arrCounty.length; i < j; i++) {
+    var $option = document.createElement('option');
+    // $option.setAttribute('value', i);
+    $option.setAttribute('value', arrCounty[i]);
+    $option.textContent = arrCounty[i];
+    $county.appendChild($option);
+  }
+  $county.onchange = function() {
+    var selected = this.value;
+    var arrSiteName = [];
+    for (var i = 0, j = that.data.length; i < j; i++) {
+      if (selected == that.data[i].County) {
+        arrSiteName.push(that.data[i].SiteName);
+        that.selectSite(arrSiteName);
+      }
+    }
+  }
+}
+
+Data.prototype.selectSite = function(arrSiteName) {  
+  var $siteName = document.getElementById('optionSiteName');
+  $siteName.innerHTML = "";
+  for (var i = 0, j = arrSiteName.length; i < j; i++) {
+    var $option = document.createElement('option');
+    $option.setAttribute('value', arrSiteName[i]);
+    $option.textContent = arrSiteName[i];
+    $siteName.appendChild($option);
+  }
+
+}
+
+
+
+
+

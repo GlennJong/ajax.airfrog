@@ -2,6 +2,7 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>空氣污染</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
   <link rel="stylesheet" href="css/stylesheet.css">
@@ -66,7 +67,14 @@
   <div class="modal__content locatebox__content">
     <h2>選擇其他地區</h2>
     <button id="locateClose" class="modal__close"></button>
-    div.locata
+    <div class="locata-select">
+      <select name="" id="optionCounty">
+        <option value="">縣市區域</option>
+      </select>
+      <select name="" id="optionSiteName">
+        <option value="">站名</option>
+      </select>
+    </div>
     </div>
   </div>
 </div>
@@ -151,8 +159,8 @@
       </svg>
     </button>
     <p class="frog__state">
-      <span><strong id="SiteName">尋找最近的</strong>站</span>
       <span id="County"></span>
+      <span><strong id="SiteName">尋找最近的</strong>站</span>
     </p>
     <h1 id="Status" class="frog__title">偵測中</h1>
   </div>

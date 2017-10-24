@@ -22,7 +22,6 @@ function ModalBox(group) {
       $modal.className = originClass + ' is-close';
     }
   }
-
 }
 
 new ModalBox('airbox');
