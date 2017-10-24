@@ -7,6 +7,7 @@ function getData(siteName) {
     dataType: "json",
     success: function(data) {
       new Data(data, siteName)
+      console.log(this)
     },
     
     error: function() {
