@@ -17,41 +17,42 @@ function getData(siteName) {
 
 function Data(data, siteName) {
   this.data = data;
-  this.mySite = siteName;
-  this.locate = this.findSite();
-  that = this.data[this.locate];
 
-  this.print([
-              'SiteName', 
-              'County',
-              'PM2.5',
-              'Status'
-              ]);
-
-  this.style('PM2.5');
   this.selectSetting();
   this.bindEvents()
 
-  // Dust
-  window.init = Dust(that.AQI)
+  // Apply
+  var num = this.findSite(siteName);
+  var newSite = this.data[num];
+  this.applyData(newSite);
 };
 
-Data.prototype.findSite = function() {
+Data.prototype.applyData = function(newSite) {
+  // this.newSite = this.data[this.num];
+  this.print(newSite, ['SiteName', 'County', 'PM2.5', 'Status']);
+  this.style(newSite, 'PM2.5');
+
+  // Dust
+  window.init = Dust(newSite['PM2.5'])
+}
+
+Data.prototype.findSite = function(siteName) {
   for (var i = 0, j = this.data.length; i < j; i++) {
-    if (this.mySite == this.data[i].SiteName) {
+    if (siteName == this.data[i].SiteName) {
       return i
     }
   }
 };
 
-Data.prototype.print = function(prop) {
+Data.prototype.print = function(newSite, prop) {
   for(var i = 0, j = prop.length; i < j; i++) {
-    document.getElementById(prop[i]).textContent = that[prop[i]];
+    document.getElementById(prop[i]).textContent = newSite[prop[i]];
+    console.log(newSite['PM2.5'])
   }
 };
 
-Data.prototype.style = function(prop) {
-  var index   = that[prop],
+Data.prototype.style = function(newSite, prop) {
+  var index   = newSite[prop],
   // var index   = 166,
       $body   = document.body,
       $cursor = document.getElementById('cursor'),
@@ -82,10 +83,11 @@ Data.prototype.style = function(prop) {
   var scale = [easy, normal, warning, danger];
   for (var i = 0, j = scale.length; i < j; i++) {
     if (index > scale[i].value && index != "") {
-      $body.className = scale[i].class;
+      // $body.className = scale[i].class;
+      $body.setAttribute('class', scale[i].class);
       $sayContent.textContent = scale[i].say;
-    } else if (index == "") {
-      return
+      console.log(scale[i])
+      console.log(index)
     }
   };
 
@@ -110,7 +112,6 @@ Data.prototype.selectSetting = function() {
 
   for (var i = 0, j = arrCounty.length; i < j; i++) {
     var $option = document.createElement('option');
-    // $option.setAttribute('value', i);
     $option.setAttribute('value', arrCounty[i]);
     $option.textContent = arrCounty[i];
     $county.appendChild($option);
@@ -142,20 +143,12 @@ Data.prototype.bindEvents = function() {
   var $btn = document.getElementById('newSite');
   var that = this;
   $btn.onclick = function() {
-    that.mySite = document.getElementById('optionSiteName').value;
-    that.locate = that.findSite();
-    newThat = that.data[that.locate];
 
-    that.print([
-                'SiteName', 
-                'County',
-                'PM2.5',
-                'Status'
-                ]);
+    var newSiteName = document.getElementById('optionSiteName').value;
+    var num = that.findSite(newSiteName);
 
-    that.style('PM2.5');
-    // Dust
-    window.init = Dust(newThat.AQI)
+    var newSite = that.data[num];
+    that.applyData(newSite)
   }
 }
 
