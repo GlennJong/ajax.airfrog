@@ -16,8 +16,8 @@ function Dust(qty) {
   var windowWidth  = General.windowWidth,
       windowHeight = General.windowHeight;
 
-  // $canvas.setAttribute('width', windowWidth);
-  // $canvas.setAttribute('height', windowHeight);
+  $canvas.setAttribute('width', windowWidth);
+  $canvas.setAttribute('height', windowHeight);
 
   this.run = function() {
     for (var i = 0; i < General.qty; i++) {

@@ -7,7 +7,6 @@ function getData(siteName) {
     dataType: "json",
     success: function(data) {
       new Data(data, siteName)
-      console.log(this)
     },
     
     error: function() {
@@ -29,7 +28,7 @@ function Data(data, siteName) {
 };
 
 Data.prototype.applyData = function(newSite) {
-  // this.newSite = this.data[this.num];
+  console.log('work')
   this.print(newSite, ['SiteName', 'County', 'PM2.5', 'Status']);
   this.style(newSite, 'PM2.5');
 
@@ -47,14 +46,13 @@ Data.prototype.findSite = function(siteName) {
 
 Data.prototype.print = function(newSite, prop) {
   for(var i = 0, j = prop.length; i < j; i++) {
-    document.getElementById(prop[i]).textContent = newSite[prop[i]];
-    console.log(newSite['PM2.5'])
+      document.getElementById(prop[i]).textContent = newSite[prop[i]];
   }
 };
 
 Data.prototype.style = function(newSite, prop) {
   var index   = newSite[prop],
-  // var index   = 166,
+  // var index   = ,
       $body   = document.body,
       $cursor = document.getElementById('cursor'),
       $bubble = document.getElementById('bubble'),
@@ -64,38 +62,47 @@ Data.prototype.style = function(newSite, prop) {
   var easy = {
         class: 'lv-1',
         value: 0,
-        say:   '還不錯，適合出遊大口呼吸，別宅在家了！'
+        say:   'PM2.5 濃度很低！',
+        degConst: 90/35,
+        basic: 0
       },
       normal = {
         class: 'lv-2',
         value: 35,
-        say:   '有點糟呢，出門記得戴口罩！'
+        say:   'PM2.5 濃度有點高，出門記得戴口罩！',
+        degConst: 90/18,
+        basic: 90
       },
       warning = {
         class: 'lv-3',
         value: 53,
-        say:   '很糟糕，為了你可愛的肺，最好別出門！'
+        say:   'PM2.5 濃度極高，最好別出門！',
+        degConst: 90/17,
+        basic: 180
       },
       danger = {
         class: 'lv-4',
         value: 70,
-        say:   '糟透了，快把門窗緊閉，打開空氣清淨機！'
+        say:   'PM2.5 紫爆，打開空氣清淨機！',
+        degConst: 90/50,
+        basic: 270
       };
   var scale = [easy, normal, warning, danger];
   for (var i = 0, j = scale.length; i < j; i++) {
     if (index > scale[i].value && index != "") {
-      // $body.className = scale[i].class;
       $body.setAttribute('class', scale[i].class);
       $sayContent.textContent = scale[i].say;
-      console.log(scale[i])
-      console.log(index)
+
+      // Clock
+      var deg    = scale[i].basic + 
+                  (index - scale[i].value) * 
+                  scale[i].degConst,
+          rotate = 'transform: rotate(' + deg + 'deg)';
+
+      console.log(deg)
+      $cursor.setAttribute('style', rotate);
     }
   };
-
-  // Clock
-  var deg    = index * 360/200,
-      rotate = 'transform: rotate(' + deg + 'deg)';
-  $cursor.setAttribute('style', rotate);
 
   // Bubble
   var originClass = $bubble.getAttribute('class');
@@ -143,6 +150,7 @@ Data.prototype.selectSite = function(arrSiteName) {
 Data.prototype.bindEvents = function() {
   var $btn = document.getElementById('newSite');
   var that = this;
+
   $btn.onclick = function() {
 
     var newSiteName = document.getElementById('optionSiteName').value;
@@ -150,6 +158,12 @@ Data.prototype.bindEvents = function() {
 
     var newSite = that.data[num];
     that.applyData(newSite)
+
+    // Modal Control
+
+    var $modal = document.getElementById('locateModal');
+    var originClass = $modal.getAttribute('class');
+    $modal.className = originClass + ' is-close';
   }
 }
 
